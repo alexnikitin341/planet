@@ -1,0 +1,49 @@
+.continer {
+  width: 100vw;
+  height: 100vh;
+  background: url(http://localhost:3000/space.jpeg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1);
+  transition: 0.5s;
+
+  animation-name: appear;
+  animation-duration: 300ms;
+}
+
+.block {
+  width: 50%;
+  height: 50%;
+  background: #e7e7e7;
+  border-radius: 15px;
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+}
+
+button {
+  cursor: pointer;
+  padding: 15px;
+  outline: none;
+  border: none;
+  background: #3f51b5;
+  color: white;
+  border-radius: 10px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
