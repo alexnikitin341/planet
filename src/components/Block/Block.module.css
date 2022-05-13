@@ -31,6 +31,10 @@ button {
   border-radius: 10px;
 }
 
+p {
+  white-space: pre-line;
+}
+
 @keyframes appear {
   from {
     opacity: 0;
