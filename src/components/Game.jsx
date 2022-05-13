@@ -1,78 +1,9 @@
 import { useState } from 'react';
-import { types } from '../lib/constans';
+import { blockAfterSceneContent, steps, typesStep } from '../lib/constans';
+import { getContent } from '../lib/utils';
 import Block from './Block/Block';
 import Scene from './Scene';
 import StartGame from './StartGame/StartGame';
-
-const typesStep = {
-  start: 'start',
-  block: 'block',
-  blockAfterScene: 'blockAfterScene',
-  scene: 'scene',
-};
-
-const blockAfterSceneContent = {
-  [types.pole]: { text: 'The polar day, like the polar night, lasts here for about six months' },
-  [types.africa]: {
-    text: 'Africa is the hottest continent on the planet and is considered the birthplace of mankind',
-  },
-  [types.australia]: {
-    text: 'Australia is the smallest by area and the driest continent on Earth.',
-  },
-};
-
-const steps = [
-  {
-    type: typesStep.start,
-    title: types.start,
-  },
-  {
-    type: typesStep.block,
-    title: types.pole,
-  },
-  {
-    type: typesStep.scene,
-    typeScene: types.pole,
-  },
-  {
-    type: typesStep.blockAfterScene,
-    title: types.pole,
-  },
-
-  {
-    type: typesStep.block,
-    title: types.africa,
-  },
-  {
-    type: typesStep.scene,
-    typeScene: types.africa,
-  },
-  {
-    type: typesStep.blockAfterScene,
-    title: types.africa,
-  },
-
-  {
-    type: typesStep.block,
-    title: types.australia,
-  },
-  {
-    type: typesStep.scene,
-    typeScene: types.australia,
-  },
-  {
-    type: typesStep.blockAfterScene,
-    title: types.australia,
-  },
-
-  {
-    type: typesStep.block,
-    title: types.finish,
-  },
-].map((step, i) => ({ ...step, id: i }));
-
-const getContent = (name) => `You need to find ${name} and click on it so
-you can rotate around the earth`;
 
 const Game = () => {
   const [stepIndex, setStepIndex] = useState(0);
@@ -84,7 +15,7 @@ const Game = () => {
   };
 
   const startNewGame = () => {
-    setStepIndex(0);
+    setStepIndex(1);
     setErrorIds([]);
   };
 
@@ -97,11 +28,12 @@ const Game = () => {
     (errorId) => steps.find(({ id }) => id === errorId).typeScene === currentStep.title
   );
 
+  console.log('---stepIndex', stepIndex);
+
   return (
     <>
       <div
         style={{
-          width: '100vw',
           zIndex: 4,
           display: 'flex',
           alignItems: 'center',
@@ -109,7 +41,8 @@ const Game = () => {
           height: '40px',
           position: 'fixed',
           top: '15px',
-          left: '0',
+          left: '50%',
+          transform: 'translate(-50%, 0)',
         }}
       >
         {progress.map(({ id }) => (
@@ -130,17 +63,15 @@ const Game = () => {
         ))}
       </div>
 
+      <Scene
+        id={id}
+        type={currentStep.typeScene || currentStep.title}
+        onConfirm={() => setStepIndex((prev) => prev + 1)}
+        onError={() => onError(id)}
+      />
+
       {currentStep.type === typesStep.start && (
         <StartGame start={() => setStepIndex((prev) => prev + 1)} />
-      )}
-
-      {currentStep.type === typesStep.scene && (
-        <Scene
-          id={id}
-          type={currentStep.typeScene}
-          onConfirm={() => setStepIndex((prev) => prev + 1)}
-          onError={() => onError(id)}
-        />
       )}
 
       {currentStep.type === typesStep.block && (

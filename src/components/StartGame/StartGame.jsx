@@ -54,8 +54,6 @@ const StartGame = ({ start }) => {
 
   return (
     <div className={styles.continer}>
-      <Scene type={types.pole} onConfirm={() => {}} onError={() => {}} />
-
       <div className={styles.box_tip}>
         <div
           ref={ref}

@@ -21,6 +21,7 @@ function App() {
             content='Are you ready to start?'
             buttonContent='Start 3D game'
             onConfirm={startGame}
+            style={{ background: 'url(http://localhost:3000/space.jpeg)' }}
           />
         )}
         {show3DGame && <Game />}

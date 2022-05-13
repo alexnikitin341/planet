@@ -1,7 +1,6 @@
 import React, { useRef, Suspense, useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, useTexture } from '@react-three/drei';
-import * as THREE from 'three';
 import { types } from '../lib/constans';
 
 const Earth = ({ onClick }) => {
@@ -58,6 +57,11 @@ const Scene = ({ onConfirm, onError, type }) => {
       onError();
     }
   }, [quantityMistakes]);
+
+  useEffect(() => {
+    setQuantityMistakes(0);
+    setIsShowTip(true);
+  }, [type]);
 
   return (
     <>
