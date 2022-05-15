@@ -28,8 +28,6 @@ const Game = () => {
     (errorId) => steps.find(({ id }) => id === errorId).typeScene === currentStep.title
   );
 
-  console.log('---stepIndex', stepIndex);
-
   return (
     <>
       <div

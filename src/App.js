@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import './App.css';
 import Block from './components/Block/Block';
-import Game from './components/Game';
+import Game3D from './components/Game';
+import QuestionGame from './components/QuestionGame/QuestionGame';
 
 function App() {
-  const [showStart, setShowStart] = useState(true);
+  const [showStart, setShowStart] = useState(false);
   const [show3DGame, setShow3DGame] = useState(false);
+  const [showQuestionGame, setShowQuestionGame] = useState(false);
 
   const startGame = () => {
     setShowStart(false);
@@ -15,6 +17,22 @@ function App() {
   return (
     <div className='App'>
       <div className='scene'>
+        {!show3DGame && !showQuestionGame && (
+          <div
+            style={{
+              paddingTop: '20vh',
+              width: '100vw',
+              display: 'flex',
+              justifyContent: 'space-around',
+            }}
+          >
+            <button onClick={() => setShowQuestionGame(true)}>Start mini game</button>
+            <button onClick={() => setShow3DGame(true)}>Start 3D game</button>
+          </div>
+        )}
+
+        {showQuestionGame && <QuestionGame />}
+
         {showStart && (
           <Block
             title='Start game'
@@ -24,7 +42,7 @@ function App() {
             style={{ background: 'url(http://localhost:3000/space.jpeg)' }}
           />
         )}
-        {show3DGame && <Game />}
+        {show3DGame && <Game3D />}
       </div>
     </div>
   );

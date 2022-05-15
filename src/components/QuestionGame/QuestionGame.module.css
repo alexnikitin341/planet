@@ -1,0 +1,57 @@
+.animation_container {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: black;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  width: 10vw;
+  height: 10vw;
+  background: whitesmoke;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  margin: 10px;
+}
+
+.rocket {
+  width: 7vw;
+  height: 7vw;
+  animation-name: horizontal-move, vertical-move;
+  animation-duration: 3s, 3s;
+  left: 88%;
+  top: 26%;
+  position: absolute;
+}
+
+@keyframes horizontal-move {
+  0% {
+    left: 0;
+  }
+
+  50% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    left: 88%;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes vertical-move {
+  0% {
+    top: 5%;
+  }
+
+  100% {
+    top: 26%;
+  }
+}

@@ -24,6 +24,10 @@
   border-radius: 15px;
   animation-name: slide-in;
   animation-duration: 0.5s;
+  z-index: 5;
+}
+
+.answers_block {
 }
 
 button {

@@ -19,21 +19,21 @@ const steps = [
   Successful tasks will be displayed in green\n 
   Tasks with errors will be displayed in red`,
     styles: { top: '105px', left: '50%', transform: 'translate(-50%, 0)' },
-    isShowUpArrow: true,
+    stylesUpArrow: { left: '50%', transform: 'translate(-50%, 0)' },
   },
   {
     title: 'Error counter',
     text: `You have several attempts to find the desired.\n
     Every time you click on the planet is considered an attempt\n`,
     styles: { top: '105px', left: '10px' },
-    isShowUpArrow: true,
+    stylesUpArrow: { left: '10%' },
   },
   {
     title: 'Tip',
     text: `Here you can see a hint of what you need to find.\n
     If it bothers you can close it by clicking on the cross\n`,
     styles: { top: '135px', right: '10px' },
-    isShowUpArrow: true,
+    stylesUpArrow: { right: '10%' },
   },
   { title: 'Move', styles: {} },
 ].map((step, i) => ({ ...step, id: i }));
@@ -65,16 +65,15 @@ const StartGame = ({ start }) => {
             ...currentStep.styles,
           }}
         >
-          {currentStep.isShowUpArrow && (
+          {currentStep.stylesUpArrow && (
             <UpArrow
               width='40px'
               height='40px'
               fill='green'
               style={{
                 top: '-40px',
-                left: '50%',
-                transform: 'translate(-50%, 0)',
                 position: 'absolute',
+                ...currentStep.stylesUpArrow,
               }}
             />
           )}

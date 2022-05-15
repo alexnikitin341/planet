@@ -72,3 +72,10 @@ export const steps = [
     title: types.finish,
   },
 ].map((step, i) => ({ ...step, id: i }));
+
+export const typeQuestion = {
+  radio: 'radio',
+  checkbox: 'checkbox',
+  input: 'input',
+  chooseImg: 'chooseImg',
+};
