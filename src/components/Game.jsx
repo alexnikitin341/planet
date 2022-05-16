@@ -5,7 +5,7 @@ import Block from './Block/Block';
 import Scene from './Scene';
 import StartGame from './StartGame/StartGame';
 
-const Game = () => {
+const Game = ({ onEndGame }) => {
   const [stepIndex, setStepIndex] = useState(0);
   const [errorIds, setErrorIds] = useState([]);
 
@@ -15,6 +15,7 @@ const Game = () => {
   };
 
   const startNewGame = () => {
+    onEndGame();
     setStepIndex(1);
     setErrorIds([]);
   };

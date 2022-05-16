@@ -2,6 +2,7 @@
   width: 100vw;
   min-height: 100vh;
   padding: 30px;
+  padding-top: 100px;
   box-sizing: border-box;
   background-color: black;
   position: fixed;

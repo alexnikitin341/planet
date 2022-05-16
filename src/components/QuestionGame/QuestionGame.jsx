@@ -3,13 +3,14 @@ import { typeQuestion } from '../../lib/constans';
 import Question from '../Question/Question';
 import styles from './QuestionGame.module.css';
 import RoketBox from '../RocketBox/RoketBox';
+import Block from '../Block/Block';
 
 const questions = [
   {
     type: typeQuestion.radio,
     title: 'Distance from the earth to the sun',
     question:
-      'What is the distance from the earth to the sun if we know that light passes it in 8 minutes and 20 seconds and the speed of light is 300,000 km/s',
+      'What is the distance from the earth to the sun if we know that light passes it in 8 minutes and 20 seconds and the speed of the sunlight is 300,000 km/s',
     answers: [
       {
         text: '100 000 000 km/s',
@@ -29,10 +30,10 @@ const questions = [
   {
     type: typeQuestion.checkbox,
     title: 'Mars',
-    question: 'what statements are true for Mars?',
+    question: 'What statements are true for Mars?',
     answers: [
       {
-        text: 'Gravity on Mars is 62% less than on Earth',
+        text: 'Gravity on Mars is 62% less than on Planet Earth',
         fact: 'Mars is half the size of Earth in diameter and 10 times lighter',
       },
       {
@@ -40,7 +41,7 @@ const questions = [
         fact: 'The moons of Mars Deimos and Phobos',
       },
       {
-        text: 'The mountains of Mars are lower than those of Earth',
+        text: 'The mountains of Mars are lower than those of Planet Earth',
         fact: 'The Martian Mount Olympus is the highest mountain in the Solar System, its height is 27.4 kilometers',
       },
       {
@@ -51,56 +52,28 @@ const questions = [
     answerIds: [0, 1],
   },
   {
-    type: typeQuestion.checkbox,
-    title: 'Mars1',
-    question: 'what statements are true for Mars?',
+    type: typeQuestion.radio,
+    title: 'MOON',
+    question: 'How many people have visited the surface of the moon?',
     answers: [
       {
-        text: 'Gravity on Mars is 62% less than on Earth',
-        fact: 'Mars is half the size of Earth in diameter and 10 times lighter',
+        text: '12',
       },
       {
-        text: 'Mars has two natural satellites',
-        fact: 'The moons of Mars Deimos and Phobos',
+        text: '10',
       },
       {
-        text: 'The mountains of Mars are lower than those of Earth',
-        fact: 'The Martian Mount Olympus is the highest mountain in the Solar System, its height is 27.4 kilometers',
+        text: '20',
       },
       {
-        text: 'The thin atmosphere of Mars consists mainly of oxygen',
-        fact: 'The thin atmosphere of Mars consists mainly of carbon dioxide',
+        text: '25',
       },
     ].map((e, i) => ({ ...e, id: i })),
-    answerIds: [0, 1],
-  },
-  {
-    type: typeQuestion.checkbox,
-    title: 'Mars2',
-    question: 'what statements are true for Mars?',
-    answers: [
-      {
-        text: 'Gravity on Mars is 62% less than on Earth',
-        fact: 'Mars is half the size of Earth in diameter and 10 times lighter',
-      },
-      {
-        text: 'Mars has two natural satellites',
-        fact: 'The moons of Mars Deimos and Phobos',
-      },
-      {
-        text: 'The mountains of Mars are lower than those of Earth',
-        fact: 'The Martian Mount Olympus is the highest mountain in the Solar System, its height is 27.4 kilometers',
-      },
-      {
-        text: 'The thin atmosphere of Mars consists mainly of oxygen',
-        fact: 'The thin atmosphere of Mars consists mainly of carbon dioxide',
-      },
-    ].map((e, i) => ({ ...e, id: i })),
-    answerIds: [0, 1],
+    answerIds: [0],
   },
 ].map((e, i) => ({ ...e, id: i }));
 
-const QuestionGame = () => {
+const QuestionGame = ({ onEndGame }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -127,7 +100,6 @@ const QuestionGame = () => {
   useEffect(() => {
     delay(3);
   }, [questionIndex]);
-
 
   return (
     <div className={styles.container}>
@@ -166,6 +138,7 @@ const QuestionGame = () => {
             />
           ))}
         </div>
+
         <RoketBox questionIndex={questionIndex} />
 
         {questions.map((_, i) => (
@@ -180,10 +153,16 @@ const QuestionGame = () => {
         ))}
       </div>
       {showQuestion && <Question question={currentQuestion} onNextQuestion={onNextQuestion} />}
+
       {showResult && (
-        <div>
-          quantity {userAnswers.filter(({ isRight }) => isRight).length}/{questions.length}
-        </div>
+        <Block
+          title={'End Game'}
+          onConfirm={onEndGame}
+          buttonContent={'Would you like to do it again?'}
+          content={`Cool, you answered ${
+            questions.filter((_, i) => userAnswers?.[i]?.isRight).length
+          }/${questions.length}`}
+        />
       )}
     </div>
   );

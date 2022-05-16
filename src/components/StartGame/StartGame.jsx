@@ -31,7 +31,8 @@ const steps = [
   {
     title: 'Tip',
     text: `Here you can see a hint of what you need to find.\n
-    If it bothers you can close it by clicking on the cross\n`,
+    If it's uncomfortable for you then 
+    you can close it by clicking on the cross\n`,
     styles: { top: '135px', right: '10px' },
     stylesUpArrow: { right: '10%' },
   },

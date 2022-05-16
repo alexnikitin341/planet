@@ -25,9 +25,10 @@
   animation-name: slide-in;
   animation-duration: 0.5s;
   z-index: 5;
-}
-
-.answers_block {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 10px;
 }
 
 button {

@@ -21,7 +21,7 @@ const RadioQuestion = ({ questionData, onSubmit }) => {
   };
 
   return (
-    <div>
+    <>
       <h2>{title}</h2>
       <h4>{question}</h4>
       {answers.map((answer) => (
@@ -42,7 +42,7 @@ const RadioQuestion = ({ questionData, onSubmit }) => {
               checked={chooseAnswer === answer.id}
               onChange={() => !isAnswered && setChooseAnswer(answer.id)}
             />
-            {answer.text}
+            <span>{answer.text}</span>
           </label>
         </div>
       ))}
@@ -58,7 +58,7 @@ const RadioQuestion = ({ questionData, onSubmit }) => {
       ) : (
         <button onClick={() => setIsAnswered(true)}>Submit</button>
       )}
-    </div>
+    </>
   );
 };
 

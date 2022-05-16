@@ -13,7 +13,7 @@ const RoketBox = ({ questionIndex }) => {
   };
 
   const getTopPosition = (questionIndex) => {
-    return `top: calc(30px + ${questionIndex * 20}px + ${questionIndex * 10}vw - 3vw);`;
+    return `top: calc(100px + ${questionIndex * 20}px + ${questionIndex * 10}vw - 3vw);`;
   };
 
   const horizontalMove = useMemo(

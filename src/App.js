@@ -13,6 +13,10 @@ function App() {
     setShowStart(false);
     setShow3DGame(true);
   };
+  const endGame = ()=>{
+    setShow3DGame(false)
+    setShowQuestionGame(false)
+  }
 
   return (
     <div className='App'>
@@ -31,7 +35,7 @@ function App() {
           </div>
         )}
 
-        {showQuestionGame && <QuestionGame />}
+        {showQuestionGame && <QuestionGame onEndGame={endGame}/>}
 
         {showStart && (
           <Block
@@ -42,7 +46,7 @@ function App() {
             style={{ background: 'url(http://localhost:3000/space.jpeg)' }}
           />
         )}
-        {show3DGame && <Game3D />}
+        {show3DGame && <Game3D onEndGame={endGame}/>}
       </div>
     </div>
   );

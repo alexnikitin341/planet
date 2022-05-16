@@ -6,7 +6,11 @@ const Block = ({ onConfirm, title, content, buttonContent, style }) => {
       <div className={styles.block}>
         <h2>{title}</h2>
         <p>{content}</p>
-        {onConfirm && <button onClick={onConfirm}>{buttonContent}</button>}
+        {onConfirm && (
+          <div style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-end' }}>
+            <button onClick={onConfirm}>{buttonContent}</button>
+          </div>
+        )}
       </div>
     </div>
   );

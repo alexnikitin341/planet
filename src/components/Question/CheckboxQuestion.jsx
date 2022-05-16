@@ -41,7 +41,7 @@ const CheckboxQuestion = ({ questionData, onSubmit }) => {
   };
 
   return (
-    <div>
+    <>
       <h2>{title}</h2>
       <h4>{question}</h4>
       {answers.map((answer) => (
@@ -62,7 +62,7 @@ const CheckboxQuestion = ({ questionData, onSubmit }) => {
               checked={chooseAnswers.includes(answer.id)}
               onChange={() => onChange(answer.id)}
             />
-            {answer.text}
+            <span>{answer.text}</span>
           </label>
         </div>
       ))}
@@ -78,7 +78,7 @@ const CheckboxQuestion = ({ questionData, onSubmit }) => {
       ) : (
         <button onClick={() => setIsAnswered(true)}>Submit</button>
       )}
-    </div>
+    </>
   );
 };
 
